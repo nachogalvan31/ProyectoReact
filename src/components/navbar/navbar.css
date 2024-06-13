@@ -1,0 +1,13 @@
+.navbarContainer {
+    background-color: rgb(33, 117, 58);
+    display: flex;
+    width : 100%;
+    justify-content: space-between;
+    min-height: 7vh;
+    align-items: center;
+  }
+
+  .container-juegos{
+    color: rgb(5, 39, 112);
+}
+  
