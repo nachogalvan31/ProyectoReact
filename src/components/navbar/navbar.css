@@ -1,13 +1,39 @@
 .navbarContainer {
-    background-color: rgb(33, 117, 58);
-    display: flex;
-    width : 100%;
-    justify-content: space-between;
-    min-height: 7vh;
-    align-items: center;
-  }
-
-  .container-juegos{
-    color: rgb(5, 39, 112);
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(74, 72, 156);
+  align-items: center;
+  padding: 10px;
 }
-  
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+li {
+  list-style: none;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.categories li {
+  background-color: rgb(97, 104, 170);
+  padding: 10px 20px;
+  color: #000000;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+}
+.categories li:hover {
+  background-color: rgb(206, 206, 198);
+}

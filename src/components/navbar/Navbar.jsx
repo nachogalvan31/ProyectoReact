@@ -1,25 +1,25 @@
 import CartWidget from "../cartWidget/CartWidget";
 import "./navbar.css";
-
+import { Link } from "react-router-dom";
 export const Navbar = () => {
   return (
-    <div className="navbarContainer">
-     
-      <h2>El Rincon del Vago</h2>
-
-      <div className='container-juegos'>
-      <ul style={{ display: "flex", gap: "25px"}}>
-        <li><span style={{ cursor: "pointer" }} onClick={() => handleItemClick("Juegos")}>Juegos</span></li>
-        <li><span style={{ cursor: "pointer" }} onClick={() => handleItemClick("PS3")}>PS3</span></li>
-        <li><span style={{ cursor: "pointer" }} onClick={() => handleItemClick("PS4")}>PS4</span></li>
-        <li><span style={{ cursor: "pointer" }} onClick={() => handleItemClick("XBOX 360")}>XBOX 360</span></li>
-        <li><span style={{ cursor: "pointer" }} onClick={() => handleItemClick("XBOX ONE")}>XBOX ONE</span></li>
-      </ul>
+    <div>
+      <>
+      <div className="navbarContainer">
+      <Link style={{ color: "beige" }} to="/">
+           El Rincon Del Vago
+          </Link>
+          <ul className="categories">
+          <Link to="/">Juegos</Link>
+          <Link to="/category/PS3">PS3</Link>
+          <Link to="/category/PS4">PS4</Link>
+          <Link to="/category/PS5">PS5</Link>
+          <Link to="/category/XBOX-360">XBOX-360</Link>
+          <Link to="/category/XBOX-ONE">XBOX-ONE</Link>
+        </ul>
+        <CartWidget />
       </div>
-      
-      <CartWidget/>
-
-    
-    </div>
-  );
+    </>
+  </div>
+);
 };
