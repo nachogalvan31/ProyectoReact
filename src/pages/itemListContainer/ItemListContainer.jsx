@@ -1,35 +1,61 @@
 import ItemList from "./itemList";
-import { products } from "../../products";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { PacmanLoader } from "react-spinners";
+import { db } from "../../firebaseConfig";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
-  const [items, setItems] = useState([]);
-  const [error, setError] = useState({});
   const { name } = useParams();
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const getProducts = new Promise((resolve, reject) => {
-      let x = true;
-      let arrayFiltered = products.filter(
-        (product) => product.category === name
-      );
-      if (x) {
-        resolve(name ? arrayFiltered : products); // [todos] [con una parte] [ deportivas ]
-      } else {
-        reject({ message: "error", codigo: "404" });
-      }
-    });
-    getProducts
-    .then((res) => {
-      setItems(res);
-    })
-    .catch((error) => {
-      setError(error);
+    let productsCollection = collection(db, "products");
+    let consulta = productsCollection;
+    if (name) {
+      consulta = query(productsCollection, where("category", "==", name));
+    }
+
+    let getProducts = getDocs(consulta);
+    getProducts.then((res) => {
+      let arrayValido = res.docs.map((product) => {
+        return { ...product.data(), id: product.id };
+      }); // []
+      setItems(arrayValido);
     });
   }, [name]);
 
-  return <ItemList items={items} />;
+     if (items.length === 0) {
+     return (
+       <div
+         style={{
+           width: "100%",
+           display: "flex",
+           marginTop: "300px",
+         justifyContent: "center",
+         }}
+       >
+         <PacmanLoader color="#422C6D" size={70} />
+       </div>
+     );
+   }
+    // const addProducts = () => {
+  //   let productsCollection = collection(db, "products");
+
+  //   products.forEach((elemento) => {
+  //     addDoc(productsCollection, elemento);
+  //   });
+  // };
+
+  return(
+    <div>
+       {/* <Button variant="contained" onClick={addProducts}>
+        Agregar productos
+      </Button> */}
+   <ItemList items={items} />;
+   {/* {items.length === 0 ? <h1>Cargando.....</h1> : <ItemList items={items} />} */}
+   </div>
+  );
 };
 
 export default ItemListContainer;

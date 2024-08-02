@@ -6,7 +6,7 @@ const Footer = () => {
     <div
       style={{
         width: "100%",
-        backgroundColor: "#002452",
+        backgroundColor: "#422C6D",
       }}
     >
       <ul>

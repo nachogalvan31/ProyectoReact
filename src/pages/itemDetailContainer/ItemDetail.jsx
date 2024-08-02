@@ -1,6 +1,6 @@
 import CounterContainer from "../../components/counter/CounterContainer";
 import "./itemDetail.css";
-const ItemDetail = ({ item, onAdd }) => {
+const ItemDetail = ({ item, onAdd, initial }) => {
   return (
     <>
       <div>
@@ -13,15 +13,18 @@ const ItemDetail = ({ item, onAdd }) => {
               <span style={{ fontSize: "23px" }}>Nombre:</span> {item.title}
             </h2>
             <h2 style={{ fontFamily: "monospace" }}>
+              <span style={{ fontSize: "23px" }}>Plataforma:</span> {item.category}
+            </h2>
+            <h2 style={{ fontFamily: "monospace" }}>
               <span style={{ fontSize: "23px" }}>Descripcion:</span>{" "}
-              {item.description}
+              {item.description2}
             </h2>
             <h2 style={{ fontFamily: "monospace" }}>
               <span style={{ fontSize: "23px" }}>Precio:</span> ${item.price}.-
             </h2>
           </div>
         </div>
-        <CounterContainer onAdd={onAdd} />
+        <CounterContainer onAdd={onAdd} stock={item.stock} initial={initial} />
       </div>
     </>
   );

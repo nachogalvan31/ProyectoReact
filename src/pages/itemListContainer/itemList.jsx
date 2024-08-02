@@ -1,6 +1,5 @@
 import { ProductCard } from "../../components/productCard/ProductCard";
 const ItemList = ({ items }) => {
-  console.log(items);
   return (
     <div
       style={{
